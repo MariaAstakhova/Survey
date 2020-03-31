@@ -1,6 +1,10 @@
 [Bb]in/
 [Oo]bj/
 
+.DS_Store
+api/.DS_Store
+
+
 .env
 
 api.test/Gateways/GetQuestionnairesGateway.cs
