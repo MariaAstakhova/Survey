@@ -43,18 +43,17 @@ namespace Survey
 
       }
 
-      Questionnaire questionnaire;
-      using (StreamReader r = new StreamReader(paths[0]))
+      List<Questionnaire> questionnaires = new List<Questionnaire>();
+
+      for (int i = 0; i < paths.Length; i++)
       {
-        string json = r.ReadToEnd();
-        questionnaire = JsonConvert.DeserializeObject<Questionnaire>(json);
-      }
-
-
-      Questionnaire[] questionnaires = new Questionnaire[]
+        using (StreamReader r = new StreamReader(paths[i]))
         {
-            questionnaire,
-        };
+          string json = r.ReadToEnd();
+          Questionnaire questionnaire = JsonConvert.DeserializeObject<Questionnaire>(json);
+          questionnaires.Add(questionnaire);
+        }
+      }
 
       return questionnaires;
     }
