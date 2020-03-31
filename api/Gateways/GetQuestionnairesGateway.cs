@@ -13,7 +13,8 @@ namespace Survey
   {
     //User ID=maria;Password=me;Host=localhost;Port=5432
     NpgsqlConnection conn;
-    string output;
+    String[] topics = new String[2];
+    String[] paths = new String[2];
     public GetQuestionnairesGateway(NpgsqlConnection conn)
     {
       this.conn = conn;
@@ -29,11 +30,18 @@ namespace Survey
         using (NpgsqlCommand command = new NpgsqlCommand(sql, conn))
         {
           NpgsqlDataReader reader = command.ExecuteReader();
+          var i = 0;
           while (reader.Read())
           {
             // val = Int32.Parse(reader[0].ToString());
             //do whatever you like
-            output = reader[1].ToString();
+            string topic = reader.GetString(reader.GetOrdinal("topic"));
+            //output = reader[1].ToString();
+            string path = reader.GetString(reader.GetOrdinal("path"));
+
+            topics[i] = topic;
+            paths[i] = path;
+            i++;
           }
 
           conn.Close(); //close the current connection
@@ -41,10 +49,11 @@ namespace Survey
 
       }
 
+
       Questionnaire[] questionnaires = new Questionnaire[]
         {
-            new Questionnaire { Topic=output},
-            new Questionnaire { },
+            new Questionnaire { Topic=topics[0]},
+            new Questionnaire { Topic=topics[1]},
         };
 
       return questionnaires;
