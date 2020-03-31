@@ -1,11 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Data.SqlClient;
 using Npgsql;
-using dotenv.net;
 
 namespace Survey
 {

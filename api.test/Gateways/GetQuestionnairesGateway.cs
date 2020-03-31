@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Moq;
 using System.Collections.Generic;
 
 namespace Survey
