@@ -1,2 +1,16 @@
 [Bb]in/
 [Oo]bj/
+
+.env
+
+ api.test/Gateways/GetQuestionnairesGateway.cs
+api.test/obj/Debug/netcoreapp3.0/api.test.assets.cache
+api.test/obj/Debug/netcoreapp3.0/api.test.csprojAssemblyReference.cache
+api.test/obj/api.test.csproj.nuget.cache
+api.test/obj/api.test.csproj.nuget.dgspec.json
+api.test/obj/project.assets.json
+api/obj/Debug/netcoreapp3.0/api.assets.cache
+api/obj/Debug/netcoreapp3.0/api.csprojAssemblyReference.cache
+api/obj/api.csproj.nuget.cache
+api/obj/api.csproj.nuget.dgspec.json
+api/obj/project.assets.json
