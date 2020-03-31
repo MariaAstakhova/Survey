@@ -3,7 +3,7 @@
 
 .env
 
- api.test/Gateways/GetQuestionnairesGateway.cs
+api.test/Gateways/GetQuestionnairesGateway.cs
 api.test/obj/Debug/netcoreapp3.0/api.test.assets.cache
 api.test/obj/Debug/netcoreapp3.0/api.test.csprojAssemblyReference.cache
 api.test/obj/api.test.csproj.nuget.cache

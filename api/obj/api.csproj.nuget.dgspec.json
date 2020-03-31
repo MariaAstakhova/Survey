@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[4.8.1, )"
             },
+            "dotenv.net": {
+              "target": "Package",
+              "version": "(, )"
+            },
             "moq": {
               "target": "Package",
               "version": "[4.13.1, )"

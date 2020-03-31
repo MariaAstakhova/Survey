@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.0": {
+      "Autofac/5.1.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Autofac.dll": {}
+        }
+      },
       "Castle.Core/4.4.0": {
         "type": "package",
         "dependencies": {
@@ -21,6 +30,20 @@
         },
         "runtime": {
           "lib/netstandard1.5/Castle.Core.dll": {}
+        }
+      },
+      "dotenv.net/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Autofac": "5.1.2",
+          "Microsoft.Extensions.DependencyInjection": "3.1.3",
+          "System.Memory": "4.5.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/dotenv.net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/dotenv.net.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/1.1.0": {
@@ -1217,7 +1240,7 @@
           "lib/netstandard1.6/System.Linq.Expressions.dll": {}
         }
       },
-      "System.Memory/4.5.3": {
+      "System.Memory/4.5.4": {
         "type": "package",
         "compile": {
           "ref/netcoreapp2.1/_._": {}
@@ -1965,6 +1988,27 @@
     }
   },
   "libraries": {
+    "Autofac/5.1.2": {
+      "sha512": "iGEx5Cm6Uor6/bZkgCHHjJO8cEQvDSOxgzNmHGJgGOnLDCe0b8NpOlhotsqx8dFvBDCsEX/V3YGRR30sRQLsxw==",
+      "type": "package",
+      "path": "autofac/5.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "autofac.5.1.2.nupkg.sha512",
+        "autofac.nuspec",
+        "icon.png",
+        "lib/net461/Autofac.dll",
+        "lib/net461/Autofac.pdb",
+        "lib/net461/Autofac.xml",
+        "lib/netstandard2.0/Autofac.dll",
+        "lib/netstandard2.0/Autofac.pdb",
+        "lib/netstandard2.0/Autofac.xml",
+        "lib/netstandard2.1/Autofac.dll",
+        "lib/netstandard2.1/Autofac.pdb",
+        "lib/netstandard2.1/Autofac.xml"
+      ]
+    },
     "Castle.Core/4.4.0": {
       "sha512": "b5rRL5zeaau1y/5hIbI+6mGw3cwun16YjkHZnV9RRT5UyUIFsgLmNXJ0YnIN9p8Hw7K7AbG1q1UclQVU3DinAQ==",
       "type": "package",
@@ -1988,6 +2032,18 @@
         "lib/netstandard1.5/Castle.Core.dll",
         "lib/netstandard1.5/Castle.Core.xml",
         "readme.txt"
+      ]
+    },
+    "dotenv.net/2.0.1": {
+      "sha512": "+5Wrqb7LV4A2Wn+2zOSHWqPV4TyjqKquyoN7SnZbwCvmJey5bQpxefVkTjsRw5cEnaqU7+UpwX4TVz3/TBoLDA==",
+      "type": "package",
+      "path": "dotenv.net/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotenv.net.2.0.1.nupkg.sha512",
+        "dotenv.net.nuspec",
+        "lib/netstandard2.0/dotenv.net.dll"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.0": {
@@ -4491,22 +4547,24 @@
         "system.linq.expressions.nuspec"
       ]
     },
-    "System.Memory/4.5.3": {
-      "sha512": "3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+    "System.Memory/4.5.4": {
+      "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
       "type": "package",
-      "path": "system.memory/4.5.3",
+      "path": "system.memory/4.5.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Memory.dll",
+        "lib/net461/System.Memory.xml",
         "lib/netcoreapp2.1/_._",
         "lib/netstandard1.1/System.Memory.dll",
         "lib/netstandard1.1/System.Memory.xml",
         "lib/netstandard2.0/System.Memory.dll",
         "lib/netstandard2.0/System.Memory.xml",
         "ref/netcoreapp2.1/_._",
-        "system.memory.4.5.3.nupkg.sha512",
+        "system.memory.4.5.4.nupkg.sha512",
         "system.memory.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -6706,6 +6764,7 @@
       "Npgsql >= 4.1.3.1",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 3.1.3",
       "System.Data.SqlClient >= 4.8.1",
+      "dotenv.net",
       "moq >= 4.13.1"
     ]
   },
@@ -6759,6 +6818,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.1, )"
+          },
+          "dotenv.net": {
+            "target": "Package",
+            "version": "(, )"
           },
           "moq": {
             "target": "Package",

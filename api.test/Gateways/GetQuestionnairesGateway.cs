@@ -7,7 +7,7 @@ namespace Survey
   public class GetQuestionnairesGatewayUnitTest
   {
     GetQuestionnairesGateway gateway;
-  
+
     public class db
     {
       public db()
@@ -34,7 +34,7 @@ namespace Survey
     [Test]
     public void itGetsQuestionnaires()
     {
-      gateway = new GetQuestionnairesGateway();
+      // gateway = new GetQuestionnairesGateway();
     }
   }
 }

@@ -7,9 +7,6 @@ namespace Survey
 {
   public class Questionnaire
   {
-    public Questionnaire()
-    {
-
-    }
+    public string Topic { get; set; }
   }
 }
