@@ -40,6 +40,10 @@
               "target": "Package",
               "version": "[3.1.3, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[4.1.3.1, )"
@@ -54,7 +58,7 @@
             },
             "dotenv.net": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[2.0.1, )"
             },
             "moq": {
               "target": "Package",

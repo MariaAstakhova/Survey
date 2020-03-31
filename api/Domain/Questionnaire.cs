@@ -8,5 +8,7 @@ namespace Survey
   public class Questionnaire
   {
     public string Topic { get; set; }
+
+    public Question[] questions { get; set; }
   }
 }

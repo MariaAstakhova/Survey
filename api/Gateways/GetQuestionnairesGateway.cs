@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+using System.IO;
 using Npgsql;
-
+using Newtonsoft.Json;
 
 namespace Survey
 {
@@ -49,11 +46,17 @@ namespace Survey
 
       }
 
+      Questionnaire questionnaire;
+      using (StreamReader r = new StreamReader(paths[0]))
+      {
+        string json = r.ReadToEnd();
+        questionnaire = JsonConvert.DeserializeObject<Questionnaire>(json);
+      }
+
 
       Questionnaire[] questionnaires = new Questionnaire[]
         {
-            new Questionnaire { Topic=topics[0]},
-            new Questionnaire { Topic=topics[1]},
+            questionnaire,
         };
 
       return questionnaires;
