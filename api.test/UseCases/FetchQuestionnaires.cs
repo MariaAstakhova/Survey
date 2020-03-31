@@ -15,7 +15,7 @@ namespace Survey
     }
 
     [Test]
-    public void itGetsQuestionnaires()
+    public void itGroupsQuestionnaires()
     {
       var mockGateway = new Mock<IGetQuestionnairesGateway>();
       Questionnaire[] questionnaires = new Questionnaire[]

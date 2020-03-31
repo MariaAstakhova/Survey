@@ -10,7 +10,7 @@ using dotenv.net;
 namespace Survey
 {
   [Produces("application/json")]
-  [Route("api/products")]
+  [Route("api")]
 
   public class QuestionnaireController
   {
@@ -18,15 +18,23 @@ namespace Survey
     GetQuestionnairesGateway gateway;
     FetchQuestionnaires fetchQuestionnaires;
 
-    [HttpGet]
-    public IEnumerable<Questionnaire> ListAllProducts()
+    [HttpGet("topics")]
+    public string[] ListQuestoinnaireTopics()
+    {
+      String[] topics = new String[] { "Infrastructure", "Compliance" };
+      return topics;
+    }
+
+    [HttpGet("questionnaire")]
+    public IEnumerable<Questionnaire> ShowQuestionniare()
     {
       NpgsqlConnection conn = new NpgsqlConnection($"Server=127.0.0.1; Port=5432; User Id={Environment.GetEnvironmentVariable("DB_USER")}; Password={Environment.GetEnvironmentVariable("DB_PASSWORD")}; Database=surveys");
 
-
-      gateway = new GetQuestionnairesGateway(conn);
+      string query = "SELECT * FROM survey WHERE topic = ANY('{Compliance, Infrastructure}')";
+      gateway = new GetQuestionnairesGateway(query, conn);
       fetchQuestionnaires = new FetchQuestionnaires(gateway);
       return fetchQuestionnaires.Execute();
     }
+
   }
 }
