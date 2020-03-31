@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
+using Npgsql;
 
 namespace Survey
 {
@@ -8,22 +9,17 @@ namespace Survey
   {
     GetQuestionnairesGateway gateway;
 
-    public class db
-    {
-      public db()
-      {
-      }
 
-      public IEnumerable<Questionnaire> request()
-      {
-        Questionnaire[] questionnaires = new Questionnaire[]
-        {
+
+
+    Questionnaire[] questionnaires = new Questionnaire[]
+    {
             new Questionnaire { },
             new Questionnaire { },
-        };
-        return questionnaires;
-      }
-    }
+    };
+
+
+
 
     [SetUp]
     public void Setup()
@@ -34,6 +30,9 @@ namespace Survey
     [Test]
     public void itGetsQuestionnaires()
     {
+      var mockDb = new Mock<NpgsqlConnection>();
+      mockDb.Verify(mockDb => mockDb.Open(), Times.Once());
+      //conn.Open();
       // gateway = new GetQuestionnairesGateway();
     }
   }
