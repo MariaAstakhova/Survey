@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 
 namespace Survey
 {
   public class GetQuestionnairesGateway : IGetQuestionnairesGateway
   {
+    //User ID=maria;Password=me;Host=localhost;Port=5432
 
     public GetQuestionnairesGateway()
     {
@@ -14,6 +13,7 @@ namespace Survey
     }
     public IEnumerable<Questionnaire> getQuestionnaires()
     {
+
       Questionnaire[] questionnaires = new Questionnaire[]
         {
             new Questionnaire { },
