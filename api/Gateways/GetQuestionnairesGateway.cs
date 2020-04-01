@@ -8,20 +8,28 @@ namespace Survey
 {
   public class GetQuestionnairesGateway : IGetQuestionnairesGateway
   {
-    string query;
+    string choices;
     NpgsqlConnection conn;
+    NpgsqlCommand command;
     String[] topics = new String[2];
     String[] paths = new String[2];
 
 
-    public GetQuestionnairesGateway(string query, NpgsqlConnection conn)
+    public GetQuestionnairesGateway(string choices, NpgsqlCommand command, NpgsqlConnection conn)
     {
-      this.query = query;
+      this.choices = choices;
       this.conn = conn;
+      this.command = command;
     }
     public IEnumerable<Questionnaire> getQuestionnaires()
     {
-      using (NpgsqlCommand command = new NpgsqlCommand(query, conn))
+
+      string query = "SELECT * FROM survey WHERE topic = ANY('{Compliance, Infrastructure}')";
+      conn.Open();
+      command.CommandText = query;
+      command.Connection = conn;
+
+      using (command)
       {
         NpgsqlDataReader reader = command.ExecuteReader();
         var i = 0;
@@ -34,9 +42,8 @@ namespace Survey
           paths[i] = path;
           i++;
         }
-
-        //  conn.Close(); //close the current connection
       }
+      conn.Close();
 
       List<Questionnaire> questionnaires = new List<Questionnaire>();
 
