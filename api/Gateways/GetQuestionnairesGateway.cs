@@ -12,6 +12,8 @@ namespace Survey
     NpgsqlConnection conn;
     String[] topics = new String[2];
     String[] paths = new String[2];
+
+
     public GetQuestionnairesGateway(string query, NpgsqlConnection conn)
     {
       this.query = query;
@@ -19,28 +21,21 @@ namespace Survey
     }
     public IEnumerable<Questionnaire> getQuestionnaires()
     {
-
-      using (conn)
+      using (NpgsqlCommand command = new NpgsqlCommand(query, conn))
       {
-        conn.Open();
-
-        using (NpgsqlCommand command = new NpgsqlCommand(query, conn))
+        NpgsqlDataReader reader = command.ExecuteReader();
+        var i = 0;
+        while (reader.Read())
         {
-          NpgsqlDataReader reader = command.ExecuteReader();
-          var i = 0;
-          while (reader.Read())
-          {
-            string topic = reader.GetString(reader.GetOrdinal("topic"));
-            string path = reader.GetString(reader.GetOrdinal("path"));
+          string topic = reader.GetString(reader.GetOrdinal("topic"));
+          string path = reader.GetString(reader.GetOrdinal("path"));
 
-            topics[i] = topic;
-            paths[i] = path;
-            i++;
-          }
-
-          conn.Close(); //close the current connection
+          topics[i] = topic;
+          paths[i] = path;
+          i++;
         }
 
+        //  conn.Close(); //close the current connection
       }
 
       List<Questionnaire> questionnaires = new List<Questionnaire>();

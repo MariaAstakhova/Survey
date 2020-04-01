@@ -25,11 +25,14 @@ namespace Survey
     public IEnumerable<Questionnaire> ShowQuestionniare()
     {
       NpgsqlConnection conn = new NpgsqlConnection($"Server=127.0.0.1; Port=5432; User Id={Environment.GetEnvironmentVariable("DB_USER")}; Password={Environment.GetEnvironmentVariable("DB_PASSWORD")}; Database=surveys");
-
+      conn.Open();
       string query = "SELECT * FROM survey WHERE topic = ANY('{Compliance, Infrastructure}')";
+
       gateway = new GetQuestionnairesGateway(query, conn);
       fetchQuestionnaires = new FetchQuestionnaires(gateway);
-      return fetchQuestionnaires.Execute();
+      IEnumerable<Questionnaire> results = fetchQuestionnaires.Execute();
+      conn.Close();
+      return results;
     }
 
   }
