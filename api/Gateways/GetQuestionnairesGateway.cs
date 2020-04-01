@@ -19,10 +19,16 @@ namespace Survey
     public IEnumerable<Questionnaire> getQuestionnaires()
     {
 
+      string topicQuery = "ANY('{";
+      for (int i = 0; i < choices.Length; i++)
+      {
+        topicQuery += choices[i];
+      }
+      topicQuery += "}')";
       using (conn)
       {
-        conn.Open();
-        string query = "SELECT * FROM survey WHERE topic = ANY('{Compliance, Infrastructure}')";
+        conn.Open(); //ANY('{Compliance, Infrastructure}')"
+        string query = "SELECT * FROM survey WHERE topic" + topicQuery;
         using (NpgsqlCommand command = new NpgsqlCommand(query, conn))
         {
           NpgsqlDataReader reader = command.ExecuteReader();
