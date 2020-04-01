@@ -22,7 +22,7 @@ namespace Survey
     }
 
     [HttpGet("questionnaire")]
-    public IEnumerable<Questionnaire> ShowQuestionniare()
+    public IEnumerable<Questionnaire> ShowQuestionniare([FromBody] string[] topics)
     {
       NpgsqlConnection conn = new NpgsqlConnection($"Server=127.0.0.1; Port=5432; User Id={Environment.GetEnvironmentVariable("DB_USER")}; Password={Environment.GetEnvironmentVariable("DB_PASSWORD")}; Database=surveys");
       string[] choices = new string[] { };
@@ -30,6 +30,7 @@ namespace Survey
       fetchQuestionnaires = new FetchQuestionnaires(gateway);
       return fetchQuestionnaires.Execute();
     }
+
 
   }
 }
