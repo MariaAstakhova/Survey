@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http.Cors;
 using Npgsql;
 
 namespace Survey
@@ -14,6 +15,7 @@ namespace Survey
     GetQuestionnairesGateway gateway;
     FetchQuestionnaires fetchQuestionnaires;
 
+    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [HttpGet("topics")]
     public string[] ListQuestoinnaireTopics()
     {
