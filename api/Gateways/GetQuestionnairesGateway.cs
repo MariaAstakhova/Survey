@@ -16,6 +16,7 @@ namespace Survey
     public GetQuestionnairesGateway(string[] choices, NpgsqlConnection conn)
     {
       this.conn = conn;
+      this.choices = choices;
     }
     public IEnumerable<Questionnaire> getQuestionnaires()
     {
@@ -23,7 +24,7 @@ namespace Survey
       using (conn)
       {
         conn.Open(); //ANY('{Compliance, Infrastructure}')"
-        string query = "SELECT * FROM survey WHERE topic" + util.makeQuery(choices);
+        string query = "SELECT * FROM survey WHERE topic = ANY('{Compliance, Infrastructure}')";// + util.makeQuery(choices);
         using (NpgsqlCommand command = new NpgsqlCommand(query, conn))
         {
           NpgsqlDataReader reader = command.ExecuteReader();
